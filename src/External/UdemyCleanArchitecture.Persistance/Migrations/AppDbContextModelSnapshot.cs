@@ -108,7 +108,7 @@ namespace UdemyCleanArchitecture.Persistance.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Car", b =>
+            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Brand", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -116,11 +116,59 @@ namespace UdemyCleanArchitecture.Persistance.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CreatedbyId")
+                    b.Property<string>("Createdby")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModelId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("Brands", (string)null);
+                });
+
+            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Car", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("BrandId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("DeletedById")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("BrandId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Createdby")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
@@ -131,23 +179,92 @@ namespace UdemyCleanArchitecture.Persistance.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("ModelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ModelId1")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UpdatedById")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId1");
+
+                    b.HasIndex("ModelId1");
+
                     b.ToTable("Cars", (string)null);
+                });
+
+            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Model", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Createdby")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Year")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Models", (string)null);
+                });
+
+            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Brand", b =>
+                {
+                    b.HasOne("UdemyCleanArchitecture.Domain.Entities.Model", null)
+                        .WithMany("Brands")
+                        .HasForeignKey("ModelId");
+                });
+
+            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Car", b =>
+                {
+                    b.HasOne("UdemyCleanArchitecture.Domain.Entities.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId1");
+
+                    b.HasOne("UdemyCleanArchitecture.Domain.Entities.Model", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId1");
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Model");
+                });
+
+            modelBuilder.Entity("UdemyCleanArchitecture.Domain.Entities.Model", b =>
+                {
+                    b.Navigation("Brands");
                 });
 #pragma warning restore 612, 618
         }

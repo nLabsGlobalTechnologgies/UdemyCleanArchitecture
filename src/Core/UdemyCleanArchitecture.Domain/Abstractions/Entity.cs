@@ -1,27 +1,12 @@
 ﻿namespace UdemyCleanArchitecture.Domain.Abstractions;
-public abstract class Entity<Type>
+public abstract class Entity
 {
-    public Entity()
-    {
-        if (typeof(Type) == typeof(Guid))
-        {
-            Id = (Type)(object)Guid.NewGuid();
-        }
-
-        if (typeof(Type) == typeof(string))
-        {
-            Id = (Type)(object)Guid.NewGuid();
-        }
-
-        CreatedDate = DateTime.Now;
-    }
-
-    public Type Id { get; private set; }
-    public Guid CreatedbyId { get; set; }
-    public DateTime CreatedDate { get; private set; }
-    public Guid? UpdatedById { get; set; }
+    public string Id { get; private set; } = Guid.NewGuid().ToString();
+    public string Createdby { get; set; } = string.Empty;
+    public DateTime CreatedDate { get; private set; } = DateTime.Now;
+    public string? UpdatedBy { get; set; }
     public DateTime? UpdatedDate { get; set; }
-    public Guid? DeletedById { get; set; }
+    public string? DeletedBy { get; set; }
     public DateTime? DeletedDate { get; set; }
     public bool IsDeleted { get; set; } = false;
 }

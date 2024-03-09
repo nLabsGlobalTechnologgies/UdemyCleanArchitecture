@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\UdemyCleanArchitecture.Application\UdemyCleanArchitecture.Application.csproj" />
     <ProjectReference Include="..\..\Core\UdemyCleanArchitecture.Domain\UdemyCleanArchitecture.Domain.csproj" />
   </ItemGroup>
 

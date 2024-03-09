@@ -2,7 +2,7 @@
 using UdemyCleanArchitecture.Domain.Abstractions;
 
 namespace UdemyCleanArchitecture.Domain.Entities;
-public sealed class UserRole : Entity<string>
+public sealed class UserRole : Entity
 {
 
     [ForeignKey("AppUser")]

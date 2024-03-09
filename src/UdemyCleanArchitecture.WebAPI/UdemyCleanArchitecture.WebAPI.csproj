@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core\UdemyCleanArchitecture.Application\UdemyCleanArchitecture.Application.csproj" />
+    <ProjectReference Include="..\Core\UdemyCleanArchitecture.Domain\UdemyCleanArchitecture.Domain.csproj" />
+    <ProjectReference Include="..\External\UdemyCleanArchitecture.Infrastructure\UdemyCleanArchitecture.Infrastructure.csproj" />
     <ProjectReference Include="..\External\UdemyCleanArchitecture.Persistance\UdemyCleanArchitecture.Persistance.csproj" />
     <ProjectReference Include="..\External\UdemyCleanArchitecture.Presentation\UdemyCleanArchitecture.Presentation.csproj" />
   </ItemGroup>

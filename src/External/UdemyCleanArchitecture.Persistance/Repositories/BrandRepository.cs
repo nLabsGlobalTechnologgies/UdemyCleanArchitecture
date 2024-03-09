@@ -3,7 +3,7 @@ using UdemyCleanArchitecture.Domain.Repositories;
 using UdemyCleanArchitecture.Persistance.Context;
 
 namespace UdemyCleanArchitecture.Persistance.Repositories;
-public sealed class CarRepository : Repository<Car, AppDbContext>, ICarRepository
+public sealed class BrandRepository : Repository<Brand, AppDbContext>, IBrandRepository
 {
-    public CarRepository(AppDbContext context) : base(context) {}
+    public BrandRepository(AppDbContext context) : base(context) {}
 }
